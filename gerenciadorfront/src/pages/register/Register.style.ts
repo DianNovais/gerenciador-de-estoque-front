@@ -17,6 +17,10 @@ export const ContentLogo = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
+
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 export const logoTemp = styled.div`
