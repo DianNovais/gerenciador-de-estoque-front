@@ -1,8 +1,10 @@
-
+import * as C from './Footer.style'
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <C.Footer>
+      <p>Feito por Dian Novais</p>
+    </C.Footer>
   )
 }
 
