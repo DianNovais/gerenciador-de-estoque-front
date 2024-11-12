@@ -115,6 +115,10 @@ export const buttonRegister = styled.button`
   }
 `;
 
+export const ErrorForm = styled.p`
+  color: red;
+`
+
 
 export const ContainerEnd = styled.div`
    display: flex;

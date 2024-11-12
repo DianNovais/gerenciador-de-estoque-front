@@ -5,9 +5,9 @@ export const setCookies = (cookie: string) => {
 export const getTokenAuthorization = (): string => {
     const cookies: string[] = document.cookie.split(';');
 
-    for(let cookie in cookies){
+    for(let cookie of cookies){
         if(cookie.includes('token')){
-            return cookie;
+            return cookie.replace('token=', '');
         }
     }
 

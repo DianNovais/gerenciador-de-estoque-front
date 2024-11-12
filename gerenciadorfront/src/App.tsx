@@ -18,24 +18,20 @@ function App() {
   const contextAuth = useContext(Context);
   let loggedIn: boolean = false;
 
-  if (contextAuth) {
-    loggedIn = contextAuth.auth;
-  }
-
   useEffect(() => {
-    if (contextAuth) {
-      loggedIn = contextAuth.auth;
+    if(contextAuth){
+      contextAuth.verifyToken();
     }
-  }, [contextAuth && contextAuth.auth])
-
+  }, [contextAuth]);
+  
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route element={loggedIn ? <Home /> : <Login />} path="/" />
-          <Route element={loggedIn ? <Home /> : <Register />} path="/register" />
-          <Route element={loggedIn ? <Home /> : <Login />} path="/login" />
+          <Route element={contextAuth?.auth ? <Home /> : <Login />} path="/" />
+          <Route element={contextAuth?.auth ? <Home /> : <Register />} path="/register" />
+          <Route element={contextAuth?.auth ? <Home /> : <Login />} path="/login" />
         </Routes>
         <Footer />
       </BrowserRouter>
