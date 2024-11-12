@@ -16,7 +16,6 @@ import Login from "./pages/login/Login";
 
 function App() {
   const contextAuth = useContext(Context);
-  let loggedIn: boolean = false;
 
   useEffect(() => {
     if(contextAuth){
