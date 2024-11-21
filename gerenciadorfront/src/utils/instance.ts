@@ -1,7 +1,13 @@
 import axios from 'axios';
+import { getTokenAuthorization } from './handleCookies';
 
 
-export const instanceApiMain = axios.create({
+const instanceApiMain = axios.create({
     baseURL: import.meta.env.VITE_URL_API,
-    timeout: 1000,
+    headers: {
+        Authorization: `Bearer ${getTokenAuthorization()}`
+    }
 })
+
+
+export {instanceApiMain};

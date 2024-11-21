@@ -35,7 +35,7 @@ const Header = () => {
             <>
               <C.NavLinkCustom to={'/'}>Home</C.NavLinkCustom>
               <C.NavLinkCustom to={'/cart'}>Carrinho</C.NavLinkCustom>
-              <C.NavLinkCustom to={'/products'}>Produtos</C.NavLinkCustom>
+              <C.NavLinkCustom to={'/sell'}>Produtos</C.NavLinkCustom>
             </>
           )}
         </C.itensMenu>

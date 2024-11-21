@@ -11,7 +11,7 @@ import {
 const Home = () => {
   return (
     <C.Home>
-      <C.cartOptions to={"/produto"}>
+      <C.cartOptions to={"/sell"}>
         <FaCashRegister style={{ color: greenMain }} />
         <p>Vender</p>
       </C.cartOptions>
@@ -19,7 +19,7 @@ const Home = () => {
         <FaCartPlus style={{ color: greenMain }} />
         <p>Carrinho</p>
       </C.cartOptions>
-      <C.cartOptions to={"/produto"}>
+      <C.cartOptions to={"/addproducts"}>
         <FaPlusCircle style={{ color: greenMain }} />
         <p>Adicionar Produto</p>
       </C.cartOptions>
