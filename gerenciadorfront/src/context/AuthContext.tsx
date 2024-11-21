@@ -23,7 +23,7 @@ const Provider = ({children}: Props) => {
     const verifyToken = () => {
         const token = getTokenAuthorization();
 
-        if(token){
+        if(token.length > 1){
             setAuth(true);
             return true
         }else{
