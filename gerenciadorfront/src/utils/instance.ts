@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { getTokenAuthorization, setCookies } from './handleCookies';
+import { setCookies } from './handleCookies';
 
 
 const instanceApiMain = axios.create({
-    baseURL: import.meta.env.VITE_URL_API,
-    headers: {
-        Authorization: `Bearer ${getTokenAuthorization()}`
-    }
+    baseURL: import.meta.env.VITE_URL_API
 })
+
+
 
 instanceApiMain.interceptors.response.use(function (response) {
     return response;

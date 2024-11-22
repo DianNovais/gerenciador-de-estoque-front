@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as C from "./ProductForm.style";
 import { instanceApiMain } from "../../utils/instance";
 import CircleLoad from "../circleLoad/CircleLoad";
+import { getTokenAuthorization } from "../../utils/handleCookies";
 
 const ProductForm = () => {
   const [title, setTitle] = useState<string>("");
@@ -32,7 +33,11 @@ const ProductForm = () => {
     setLoad(true);
 
     await instanceApiMain
-      .post("/product/create", { name: title, value: cost, qtd: quantity })
+      .post("/product/create", { name: title, value: cost, qtd: quantity }, {
+        headers: {
+          Authorization: `Bearer ${getTokenAuthorization()}`
+      }
+      })
       .then((response) => {
         if (response.status === 200 && response.data.newProduct) {
           setInfo(`Foi cadastrado o produto ${response.data.newProduct.name}`);
