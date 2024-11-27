@@ -1,12 +1,29 @@
-import { FaCartPlus } from "react-icons/fa";
 import * as C from "./ProductItem.style";
-import { TypeMapProducts } from "../../pages/sell/Sell";
+import { TypeMapProducts } from "../../types/TypeProductMap";
+import { IconType } from "react-icons";
+import { useState } from "react";
 
 type TypeProps = {
-  action?: () => void;
+  action?: (_id: string, quantity?: number) => any;
+  Icon?: IconType;
+  colorIcon?: string;
+  InputQuantity?: React.ComponentType<{
+    value: number;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  }>;
 };
 
 const ProductItem = (props: TypeMapProducts & TypeProps) => {
+  const [inputQuantity, setInputQuantity] = useState<number>(1);
+
+  const handleAction = async () => {
+    console.log("handleAction");
+    if (props.action && props._id) {
+      console.log(props._id);
+      await props.action(props._id, inputQuantity);
+    }
+  };
+
   return (
     <C.productContainer>
       <>
@@ -18,7 +35,20 @@ const ProductItem = (props: TypeMapProducts & TypeProps) => {
 
         <C.priceProduct>R$ {props.value}</C.priceProduct>
         <C.toolContainer>
-          <FaCartPlus />
+          {props.InputQuantity && (
+            <form>
+              <props.InputQuantity
+                value={inputQuantity}
+                onChange={(e) => setInputQuantity(parseInt(e.target.value))}
+              />
+            </form>
+          )}
+          {props.Icon && (
+            <props.Icon
+              onClick={() => handleAction()}
+              style={props.colorIcon ? { color: props.colorIcon } : {}}
+            />
+          )}
         </C.toolContainer>
       </>
     </C.productContainer>

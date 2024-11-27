@@ -23,7 +23,7 @@ const Home = () => {
         <FaPlusCircle style={{ color: greenMain }} />
         <p>Adicionar Produto</p>
       </C.cartOptions>
-      <C.cartOptions to={"/produto"}>
+      <C.cartOptions to={"/deleteproducts"}>
         <FaTrash style={{ color: greenMain }} />
         <p>Remover Produto</p>
       </C.cartOptions>
