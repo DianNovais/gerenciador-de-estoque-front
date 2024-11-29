@@ -16,6 +16,7 @@ import Login from "./pages/login/Login";
 import Sell from "./pages/sell/Sell";
 import AddProducts from "./pages/addProducts/AddProducts";
 import DeleteProducts from "./pages/deleteProducts/DeleteProducts";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   const contextAuth = useContext(Context);
@@ -37,6 +38,7 @@ function App() {
           <Route element={contextAuth?.auth ? <Sell /> : <Login />} path="/sell" />
           <Route element={contextAuth?.auth ? <AddProducts /> : <Login />} path="/addproducts" />
           <Route element={contextAuth?.auth ? <DeleteProducts /> : <Login />} path="/deleteproducts" />
+          <Route element={contextAuth?.auth ? <Cart /> : <Login />} path="/cart" />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import ProductItem from "../../components/productItem/ProductItem";
 import inputNumberSell from "../../components/inputNumberSell/inputNumberSell";
 import CircleLoad from "../../components/circleLoad/CircleLoad";
+import TitleContent from "../../components/titlePages/titlePages.style";
 
 type TypeListProductModify = {
   quantity: number | undefined;
@@ -125,7 +126,7 @@ const Sell = () => {
   };
 
   const VerifyProduct = () => {
-    if (!load && data.length > 0) {
+    if (!load && data && data.length > 0) {
       return data.map((item: TypeMapProducts) => (
         <ProductItem
           key={item._id}
@@ -139,19 +140,17 @@ const Sell = () => {
         />
       ));
     } else {
-      return <CircleLoad size={40} />;
+      return <p>Adicione novos produtos <Link to='/addproducts'></Link></p>;
     }
   };
 
   return (
     <C.sellContainer>
+      <TitleContent>Vender</TitleContent>
       <p>{info && info}</p>
       <p style={{ color: "red" }}>{error && error}</p>
-      {data && data?.length < 1 ? (
-        <p>Adicione novos produtos <Link to='/addproducts'></Link></p>
-      ) : (
-        VerifyProduct()
-      )}
+      
+      {load ? <CircleLoad size={40} /> : VerifyProduct()}
     </C.sellContainer>
   );
 };

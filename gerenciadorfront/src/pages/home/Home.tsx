@@ -15,7 +15,7 @@ const Home = () => {
         <FaCashRegister style={{ color: greenMain }} />
         <p>Vender</p>
       </C.cartOptions>
-      <C.cartOptions to={"/produto"}>
+      <C.cartOptions to={"/cart"}>
         <FaCartPlus style={{ color: greenMain }} />
         <p>Carrinho</p>
       </C.cartOptions>

@@ -1,13 +1,12 @@
 import ProductForm from '../../components/productsForm/ProductForm';
+import TitleContent from '../../components/titlePages/titlePages.style';
 import * as C from './AddProducts.style';
 
 const AddProducts = () => {
-  const handleSubmit = () => {
-    
-  }
 
   return (
     <C.addProductsContainer>
+      <TitleContent>Adicionar produtos</TitleContent>
       <ProductForm></ProductForm>
     </C.addProductsContainer>
   )

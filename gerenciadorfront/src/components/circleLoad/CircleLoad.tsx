@@ -7,8 +7,7 @@ type circleLoadProps = {
   size: number;
 };
 
-const CircleLoad = (props: circleLoadProps) => {
-  const CircleContainer = styled.div`
+const CircleContainer = styled.div`
     svg{
         animation: rotation 1s linear infinite;
     }
@@ -23,6 +22,9 @@ const CircleLoad = (props: circleLoadProps) => {
       }
     }
   `;
+
+const CircleLoad = (props: circleLoadProps) => {
+  
   return (
     <CircleContainer>
       <FaCircleNotch

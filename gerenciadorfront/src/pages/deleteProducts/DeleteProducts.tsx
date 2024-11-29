@@ -8,10 +8,13 @@ import ProductItem from "../../components/productItem/ProductItem";
 import CircleLoad from "../../components/circleLoad/CircleLoad";
 import * as C from "../sell/Sell.style";
 import { FaTrash } from "react-icons/fa";
+import TitleContent from "../../components/titlePages/titlePages.style";
+import { Link } from "react-router-dom";
 
 const DeleteProducts = () => {
   const [data, setData] = useState<TypeMapProducts[]>();
   const [load, setLoad] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
   const [info, setInfo] = useState<string>("");
 
   useEffect(() => {
@@ -44,22 +47,23 @@ const DeleteProducts = () => {
         { headers: { Authorization: `Bearer ${getTokenAuthorization()}` } }
       )
       .then((response) => {
-        if(response.status === 200 && response.data.message){
-            setInfo(response.data.message);
-            const removeProduct = data && data.filter((item:TypeMapProducts) => item._id !== _id);
+        if (response.status === 200 && response.data.message) {
+          setInfo(response.data.message);
+          const removeProduct =
+            data && data.filter((item: TypeMapProducts) => item._id !== _id);
 
-            setData(removeProduct);
-            setLoad(false);
+          setData(removeProduct);
+          setLoad(false);
         }
       })
       .catch((err) => {
-        console.log(err);
+        setError(err.response.data.message);
         setLoad(false);
       });
   };
 
   const VerifyProduct = () => {
-    if (!load && data && data.length > 0) {
+    if (data && data.length > 0) {
       return data.map((item: TypeMapProducts) => (
         <ProductItem
           key={item._id}
@@ -73,14 +77,22 @@ const DeleteProducts = () => {
         />
       ));
     } else {
-      return <CircleLoad size={40} />;
+      return (
+        <p>
+          Adicione novos produtos <Link to={"/addproducts"}>Clique Aqui</Link>
+        </p>
+      );
     }
   };
 
-  return (<C.sellContainer>
-    <p>{info && info}</p>
-    {data && data?.length < 1 ? <p>Adicione novos produtos</p> : VerifyProduct()}
-    </C.sellContainer>);
+  return (
+    <C.sellContainer>
+      <TitleContent>Deletar produto</TitleContent>
+      <p>{info && info}</p>
+      <p style={{ color: "red" }}>{error && error}</p>
+      {load ? <CircleLoad size={40} /> : VerifyProduct()}
+    </C.sellContainer>
+  );
 };
 
 export default DeleteProducts;
