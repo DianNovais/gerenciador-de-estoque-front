@@ -27,7 +27,7 @@ const Home = () => {
         <FaTrash style={{ color: greenMain }} />
         <p>Remover Produto</p>
       </C.cartOptions>
-      <C.cartOptions to={"/produto"}>
+      <C.cartOptions to={"/getsell"}>
       <FaMoneyBillWave style={{ color: greenMain }} />
         <p>Vendas</p>
       </C.cartOptions>
