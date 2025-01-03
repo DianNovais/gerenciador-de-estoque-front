@@ -10,4 +10,19 @@ export const sellContainer = styled.div`
     background: ${greyMain};
     gap: 10px;
     padding: 20px;
+
+    .formGetSell{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+
+        label{
+        font-weight: bold;
+        }
+    }
+
+    
 `
