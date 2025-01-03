@@ -3,6 +3,7 @@ import * as C from "./ProductForm.style";
 import { instanceApiMain } from "../../utils/instance";
 import CircleLoad from "../circleLoad/CircleLoad";
 import { getTokenAuthorization } from "../../utils/handleCookies";
+import addNotification from "../../utils/addNotification";
 
 const ProductForm = () => {
   const [title, setTitle] = useState<string>("");
@@ -40,7 +41,7 @@ const ProductForm = () => {
       })
       .then((response) => {
         if (response.status === 200 && response.data.newProduct) {
-          setInfo(`Foi cadastrado o produto ${response.data.newProduct.name}`);
+          addNotification('Produto cadastrado!', `Foi cadastrado o produto ${response.data.newProduct.name}`, 'success');
           setTitle("");
           setQuantity(0);
           setCost(0);
@@ -51,7 +52,7 @@ const ProductForm = () => {
         const error = err.response.data.message
           ? err.response.data.message
           : err.response.data.error;
-        setError(`${error}`);
+          addNotification('Error!', `${error}`, 'danger');
         setLoad(false);
       });
   };

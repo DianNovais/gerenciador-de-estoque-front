@@ -2,6 +2,7 @@ import { TypeMapProducts } from "../../types/TypeProductMap";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Store } from 'react-notifications-component';
 
 import * as C from './Cart.style';
 import { sellContainer as Container } from "../sell/Sell.style";
@@ -12,6 +13,7 @@ import TitleContent from "../../components/titlePages/titlePages.style";
 
 import { instanceApiMain } from "../../utils/instance";
 import { getTokenAuthorization } from "../../utils/handleCookies";
+import addNotification from "../../utils/addNotification";
 
 const Cart = () => {
   const [info, setInfo] = useState<string>("");
@@ -60,7 +62,7 @@ const Cart = () => {
           setLoad(false);
         })
         .catch((err) => {
-          setError(err.response.data.message);
+          addNotification('Error!', `${err.response.data.message}`, 'danger');
           setLoad(false);
         });
     };
@@ -106,13 +108,13 @@ const Cart = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          setInfo("Venda cadastrada com sucesso!")
+          addNotification('Venda cadastrada com sucesso!', `Venda cadastrada com sucesso!`, 'success');
           setData([]);
           setLoad(false);
         }
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        addNotification('Error!', `${err.response.data.message}`, 'danger');
         setLoad(false);
       });
   }

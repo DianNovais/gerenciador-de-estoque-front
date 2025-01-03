@@ -10,6 +10,7 @@ import * as C from "../sell/Sell.style";
 import { FaTrash } from "react-icons/fa";
 import TitleContent from "../../components/titlePages/titlePages.style";
 import { Link } from "react-router-dom";
+import addNotification from "../../utils/addNotification";
 
 const DeleteProducts = () => {
   const [data, setData] = useState<TypeMapProducts[]>();
@@ -48,8 +49,8 @@ const DeleteProducts = () => {
       )
       .then((response) => {
         if (response.status === 200 && response.data.message) {
-          setInfo(response.data.message);
-          const removeProduct =
+          addNotification('Produto removido!', `${response.data.message}`, 'success');
+            const removeProduct =
             data && data.filter((item: TypeMapProducts) => item._id !== _id);
 
           setData(removeProduct);
@@ -57,7 +58,7 @@ const DeleteProducts = () => {
         }
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        addNotification('Error!', `${err.response.data.message}`, 'danger');
         setLoad(false);
       });
   };

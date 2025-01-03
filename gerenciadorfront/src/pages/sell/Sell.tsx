@@ -15,6 +15,8 @@ import ProductItem from "../../components/productItem/ProductItem";
 import inputNumberSell from "../../components/inputNumberSell/inputNumberSell";
 import CircleLoad from "../../components/circleLoad/CircleLoad";
 import TitleContent from "../../components/titlePages/titlePages.style";
+import { Store } from "react-notifications-component";
+import addNotification from "../../utils/addNotification";
 
 type TypeListProductModify = {
   quantity: number | undefined;
@@ -28,8 +30,6 @@ type TypeCartResponse = {
 const Sell = () => {
   const [data, setData] = useState<[]>([]);
   const [load, setLoad] = useState<boolean>(true);
-  const [info, setInfo] = useState<string>("");
-  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     setLoad(true);
@@ -45,7 +45,7 @@ const Sell = () => {
           setLoad(false);
         })
         .catch((err) => {
-          setError(err.response.data.message);
+          addNotification('Error!', `${err.response.data.message}`, 'danger');
           setLoad(false);
         });
     };
@@ -54,8 +54,6 @@ const Sell = () => {
 
   const handleAddCart = async (_id: string, quantity?: number) => {
     setLoad(true);
-    setInfo("");
-    setError("");
 
     let productsCart: TypeListProductModify[] = [];
 
@@ -70,7 +68,7 @@ const Sell = () => {
       })
       .catch((err) => {
         setLoad(false);
-        setError(err.response.data.message);
+        addNotification('Error!', `${err.response.data.message}`, 'danger');
         return;
       });
 
@@ -86,7 +84,7 @@ const Sell = () => {
       // se existe apenas soma a quantidade que já tem
       if(indexProductExist >= 0){
         if (quantity === undefined || productsCart[indexProductExist].quantity === undefined || quantity < 1) {
-                setError("Quantidade inválida");
+          addNotification('Error!', `quantidade inválido`, 'danger');
                 setLoad(false);
                 return ;
         }
@@ -116,11 +114,11 @@ const Sell = () => {
         }
       )
       .then(() => {
-        setInfo("Foi adicionado " + quantity + " unidades ao carrinho");
+        addNotification('Produto cadastrado!', `${"Foi adicionado " + quantity + " unidades ao carrinho"}`, 'success');
         setLoad(false);
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        addNotification('Error!', `${err.response.data.message}`, 'danger');
         setLoad(false);
       });
   };
@@ -147,8 +145,6 @@ const Sell = () => {
   return (
     <C.sellContainer>
       <TitleContent>Vender</TitleContent>
-      <p>{info && info}</p>
-      <p style={{ color: "red" }}>{error && error}</p>
       
       {load ? <CircleLoad size={40} /> : VerifyProduct()}
     </C.sellContainer>

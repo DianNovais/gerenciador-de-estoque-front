@@ -1,6 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
+
 // components
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -30,6 +34,7 @@ function App() {
   
   return (
     <>
+      <ReactNotifications/>
       <BrowserRouter>
         <Header />
         <Routes>
