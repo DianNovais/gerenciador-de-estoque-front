@@ -114,7 +114,7 @@ const Sell = () => {
         }
       )
       .then(() => {
-        addNotification('Produto cadastrado!', `${"Foi adicionado " + quantity + " unidades ao carrinho"}`, 'success');
+        addNotification('Produto adicionado!', `${"Foi adicionado " + quantity + " unidades ao carrinho"}`, 'success');
         setLoad(false);
       })
       .catch((err) => {
